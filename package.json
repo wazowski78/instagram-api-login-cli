@@ -4,6 +4,7 @@
   "description": "Login and generate a cookie file from the CLI",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -25,6 +26,7 @@
     "chalk": "^2.4.2",
     "figlet": "^1.2.1",
     "inquirer": "^6.2.2",
-    "instagram-private-api": "^0.6.8"
+    "instagram-private-api": "^0.6.8",
+    "shelljs": "^0.8.3"
   }
 }
