@@ -34,10 +34,20 @@ const askQuestions = () => {
       }
     }, {
       type: 'input',
-      name: 'LOCATION',
-      default: (prevAnswers) => {
-        return `/passwords/${prevAnswers.USERNAME}.cookie.json`;
+      name: 'FILENAME',
+      default: prevAnswers => `${prevAnswers.USERNAME}.cookie.json`,
+      message: "File name (ends with '.cookie.json')",
+      validate: (input) => {
+        if(input.endsWith('.cookie.json')) {
+          return true;
+        }
+        return "File name must end with '.cookie.json'";
       }
+    }, {
+      type: 'input',
+      name: 'DIRECTORY',
+      message: prevAnswers => `Directory (/cookies/*.cookie.json)`,
+      default: '/passwords/'
     }
   ];
   return inquirer.prompt(questions);
