@@ -1,9 +1,8 @@
 const chalk = require('chalk');
 const inquirer = require('inquirer');
 const figlet = require('figlet');
-const shell = require('shelljs');
-const path = require('path');
 
+const api = require('./api');
 
 const init = () => {
   // Output message to chalk in blue
@@ -54,19 +53,18 @@ const run = async () => {
 
   const answers = await askQuestions();
 
-  // TODO: use username and password to login, save cookie to file
   const {
     USERNAME,
-    PASSWORD,
-    FILENAME
+    PASSWORD
   } = answers;
 
-  // TODO: login and make new file inside cookie folder with json file
-
-  shell.touch(`./cookies/${FILENAME}`);
-
-  
-
+  // Login with credentials
+  try {
+    const response = await api.login(USERNAME, PASSWORD);
+  } catch(e) {
+    console.log("Couldn't log you in!");
+    console.error(e);
+  }
 };
 
 run();
