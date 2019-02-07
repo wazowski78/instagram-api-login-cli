@@ -3,7 +3,7 @@ const inquirer = require('inquirer');
 const figlet = require('figlet');
 const shell = require('shelljs');
 const path = require('path');
-// const { V1 } = require('instagram-private-api');
+
 
 const init = () => {
   // Output message to chalk in blue
@@ -45,11 +45,6 @@ const askQuestions = () => {
       }
       return "File name must end with '.cookie.json'";
     }
-  }, {
-    type: 'input',
-    name: 'DIRECTORY',
-    message: 'Directory (/cookies/)',
-    default: '/cookies/'
   }];
   return inquirer.prompt(questions);
 };
@@ -63,15 +58,15 @@ const run = async () => {
   const {
     USERNAME,
     PASSWORD,
-    DIRECTORY,
     FILENAME
   } = answers;
 
-  // make cookies directory if not exists
-  const fileDirectory = path.join(__dirname, DIRECTORY);
-  shell.mkdir('-p', fileDirectory);
+  // TODO: login and make new file inside cookie folder with json file
 
-  // TODO: login and make new file inside directory folder with cookie file
+  shell.touch(`./cookies/${FILENAME}`);
+
+  
+
 };
 
 run();
